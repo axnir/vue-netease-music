@@ -7,3 +7,7 @@ body,
     padding: 0;
     min-width: 950px;
 }
+a::selection,p::selection {
+    background-color: #d33a31;
+    color: #fff;
+}

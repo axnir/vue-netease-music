@@ -47,6 +47,7 @@
             <span slot="title">最新MV</span>
           </el-menu-item>
         </el-menu>
+        <!-- 登录对话框 -->
         <el-dialog
           title="登录"
           :visible.sync="loginDialogVisible"
@@ -61,9 +62,7 @@
           <p>3、点击您的头像，进入我的主页</p>
           <p>4、复制浏览器地址栏 /user/home?id= 后面的数字（网易云 UID）</p>
           <span slot="footer" class="dialog-footer">
-            <el-button type="primary" @click="login"
-              >确 定</el-button
-            >
+            <el-button type="primary" @click="login">确 定</el-button>
           </span>
         </el-dialog>
       </el-aside>
@@ -88,11 +87,35 @@ export default {
   },
   methods: {
     async login () {
-      const { data: res } = await this.$http.get(`http://localhost:3000/user/detail?uid=${this.userID}`)
-      this.avatarUrl = res.profile.avatarUrl
-      this.nickName = res.profile.nickname
-      this.loginDialogVisible = false
-      this.userID = ''
+      try {
+        const { data: res } = await this.$http.get(`http://localhost:3000/user/detail?uid=${this.userID}`)
+        console.log(res)
+        // console.log(res)
+        this.avatarUrl = res.profile.avatarUrl
+        this.nickName = res.profile.nickname
+        this.loginDialogVisible = false
+        this.userID = ''
+      } catch (error) {
+        this.$message({
+          message: error,
+          type: 'error',
+          showClose: true
+        })
+      }
+      // const { data: res } = await this.$http.get(`http://localhost:3000/user/detail?uid=${this.userID}`)
+      // console.log(res)
+      // if (res.code !== 200) {
+      //   return this.$message({
+      //     message: '错了哦，uid错误',
+      //     type: 'error',
+      //     showClose: true
+      //   })
+      // }
+      // // console.log(res)
+      // this.avatarUrl = res.profile.avatarUrl
+      // this.nickName = res.profile.nickname
+      // this.loginDialogVisible = false
+      // this.userID = ''
     },
     handleClose () {
       this.loginDialogVisible = false
@@ -141,5 +164,4 @@ export default {
 a {
   color: #d74d45;
 }
-
 </style>

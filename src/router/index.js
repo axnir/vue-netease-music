@@ -9,6 +9,7 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    redirect: '/findmusic',
     children: [
       { path: '/findmusic', component: () => import(/* webpackChunkName: "find" */ '../components/FindMusic.vue') },
       { path: '/songslist', component: () => import(/* webpackChunkName: "find" */ '../components/SongsList.vue') },
