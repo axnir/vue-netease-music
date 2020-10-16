@@ -24,12 +24,11 @@
     </div>
     <!-- 歌单区 -->
     <div>
-      <el-row>
-        <el-col>
-          <el-card>
+      <el-row type="flex" justify="space-between">
+        <el-col :span="4">
+          <el-card :body-style="{ padding: '0px', width: '100%' }">
             <el-image
               :src="goodSongsList[0].coverImgUrl"
-              style="width: 135px; height: 135px"
             ></el-image>
           </el-card>
         </el-col>
@@ -103,17 +102,24 @@ export default {
     }
   }
   .good_songs_tags {
-    float: right;
-    margin: 10px 0;
+    margin: 20px 0;
     span {
+      float: right;
       font-size: 12px;
       margin-left: 10px;
       color: #7f7f81;
       cursor: pointer;
     }
-    span:active {
+    span .active {
       color: #d33a31;
     }
+  }
+  // 清除浮动
+  .good_songs_tags::after {
+    content: "";
+    clear: both;
+    display: block;
+    overflow: hidden;
   }
 }
 </style>
