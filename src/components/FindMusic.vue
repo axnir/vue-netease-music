@@ -3,7 +3,7 @@
     <!-- banner轮播图 -->
     <el-carousel :interval="4000" type="card" height="220px">
       <el-carousel-item v-for="(item, index) in banners" :key="index">
-        <img class="banner-img" :src="item.imageUrl" alt="" />
+        <img class="banner-img" :src="item.imageUrl" alt="banner图片" />
       </el-carousel-item>
     </el-carousel>
 
@@ -172,6 +172,12 @@ export default {
     }
   },
   created () {
+    this.getBanner()
+    this.getSongsList()
+    this.getNewMusicList()
+    this.getNewMV()
+  },
+  activated () {
     this.getBanner()
     this.getSongsList()
     this.getNewMusicList()

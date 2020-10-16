@@ -28,6 +28,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
+  // 路由模式，可选 history hash(默认)
+  mode: 'hash',
   routes
 })
 
